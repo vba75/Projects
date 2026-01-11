@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+<title>Список постов</title>
+{% block content %}
+
+{% for post in posts %}
+
+        <a href="{% url 'detail_post' id=post.id %}"><b>{{post.title}}</b></a> <BR>
+        <i>{{post.content}}</i> <BR>
+        <a href="{% url 'delete_post' id=post.id %}">
+            <span style="color:red; font-size:11px;">удалить</span>
+        </a>
+        <a href="{% url 'edit_post' id=post.id %}">
+            <span style="font-size:11px;color:green;">редактировать</span>
+        </a>
+        <HR>
+
+{% endfor %}
+
+{% endblock %}
+
