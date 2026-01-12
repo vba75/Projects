@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template.context_processors import request
 
 from django.views.generic import TemplateView
@@ -25,7 +25,8 @@ def new_post(request):
             content = form.cleaned_data['content']
             post = Post(title=title, content = content)
             post.save()
-            return render(request, 'thanks.html', {'context':'Спасибо за информацию'})
+            return redirect('list_posts')
+#            return render(request, 'thanks.html', {'context':'Спасибо за информацию'})
     else:
         form = PostForm()
         return render(request, 'PostForm.html', {'form': form})
